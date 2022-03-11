@@ -18,14 +18,14 @@ namespace HomeworkOOP
     }
     public class BancAccount
     {
-        private int accountNumber;
+        //статическая переменная
+        static private int accountNumber;
         private int balance;
         private AccountType _type;
 
         public int AccountNumber
         {
-            get { return accountNumber; }
-            set { accountNumber = value; }
+            get { return RandomAcNum(); }
         }
         public int Balance
         {
@@ -37,17 +37,24 @@ namespace HomeworkOOP
             get { return _type; }
             set { _type = value; }
         }
+        //Метод
+        private static int RandomAcNum()
+        {
+            Random random = new Random();
+            string value = $"{random.Next()}";
+            accountNumber = int.Parse(value);
+            return accountNumber;
+        }
     }
     internal class Program
     {
         static void Main(string[] args)
         {
-        //    Создать класс счет в банке с закрытыми полями: номер счета, баланс, тип банковского счета
-        //    (использовать перечислимый тип). Предусмотреть методы для доступа к данным – заполнения и чтения.
-        //    Создать объект класса, заполнить его поля и вывести информацию об объекте класса на печать.
-            
+            //Изменить класс счет в банке из упражнения таким образом, чтобы номер счета генерировался сам 
+            //и был уникальным. Для этого надо создать в классе статическую переменную и метод, который 
+            //увеличивает значение этого переменной.
+
             BancAccount bancAccount = new BancAccount();
-            bancAccount.AccountNumber = 104;
             bancAccount.Balance = 1500;
             bancAccount._Type = AccountType.Frozen_Account;
 
