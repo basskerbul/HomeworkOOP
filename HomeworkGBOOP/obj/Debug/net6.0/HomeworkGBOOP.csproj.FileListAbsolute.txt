@@ -1,0 +1,15 @@
+C:\HomeworkGBOOP\HomeworkGBOOP\bin\Debug\net6.0\HomeworkGBOOP.exe
+C:\HomeworkGBOOP\HomeworkGBOOP\bin\Debug\net6.0\HomeworkGBOOP.deps.json
+C:\HomeworkGBOOP\HomeworkGBOOP\bin\Debug\net6.0\HomeworkGBOOP.runtimeconfig.json
+C:\HomeworkGBOOP\HomeworkGBOOP\bin\Debug\net6.0\HomeworkGBOOP.dll
+C:\HomeworkGBOOP\HomeworkGBOOP\bin\Debug\net6.0\HomeworkGBOOP.pdb
+C:\HomeworkGBOOP\HomeworkGBOOP\obj\Debug\net6.0\HomeworkGBOOP.csproj.AssemblyReference.cache
+C:\HomeworkGBOOP\HomeworkGBOOP\obj\Debug\net6.0\HomeworkGBOOP.GeneratedMSBuildEditorConfig.editorconfig
+C:\HomeworkGBOOP\HomeworkGBOOP\obj\Debug\net6.0\HomeworkGBOOP.AssemblyInfoInputs.cache
+C:\HomeworkGBOOP\HomeworkGBOOP\obj\Debug\net6.0\HomeworkGBOOP.AssemblyInfo.cs
+C:\HomeworkGBOOP\HomeworkGBOOP\obj\Debug\net6.0\HomeworkGBOOP.csproj.CoreCompileInputs.cache
+C:\HomeworkGBOOP\HomeworkGBOOP\obj\Debug\net6.0\HomeworkGBOOP.dll
+C:\HomeworkGBOOP\HomeworkGBOOP\obj\Debug\net6.0\refint\HomeworkGBOOP.dll
+C:\HomeworkGBOOP\HomeworkGBOOP\obj\Debug\net6.0\HomeworkGBOOP.pdb
+C:\HomeworkGBOOP\HomeworkGBOOP\obj\Debug\net6.0\HomeworkGBOOP.genruntimeconfig.cache
+C:\HomeworkGBOOP\HomeworkGBOOP\obj\Debug\net6.0\ref\HomeworkGBOOP.dll
