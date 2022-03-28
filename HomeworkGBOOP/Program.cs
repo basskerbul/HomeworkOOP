@@ -1,46 +1,71 @@
-﻿//Реализовать класс для описания здания (уникальный номер здания, высота, этажность, количество квартир, 
-//подъездов). Поля сделать закрытыми, предусмотреть методы для заполнения полей и получения значений полей 
-//для печати. Добавить методы вычисления высоты этажа, количества квартир в подъезде, количества квартир 
-//на этаже и т.д. Предусмотреть возможность, чтобы уникальный номер здания генерировался программно. 
-//Для этого в классе предусмотреть статическое поле, которое бы хранило последний использованный номер 
-//здания, и предусмотреть метод, который увеличивал бы значение этого поля.
+﻿//*Для реализованного класса создать новый класс Creator, который будет являться фабрикой объектов класса 
+//здания. Для этого изменить модификатор доступа к конструкторам класса, в новый созданный класс добавить 
+//перегруженные фабричные методы CreateBuild для создания объектов класса здания. В классе Creator все методы 
+//сделать статическими, конструктор класса сделать закрытым. Для хранения объектов класса здания в классе 
+//Creator использовать хеш-таблицу. Предусмотреть возможность удаления объекта здания по его уникальному 
+//номеру из хеш-таблицы. Создать тестовый пример, работающий с созданными классами.
 
-Building myHome = new Building();
-myHome.BuildHeig = 45;
-myHome.Floors = 6;
-myHome.AllApart = 30;
-myHome.Entrance = 5;
-myHome.Info();
-Console.WriteLine($"Кол-во квартир в подьезде: {myHome.ApartInEntra()}");
-Console.WriteLine($"Кол-во квартир на этаже: {myHome.ApartInFloor()}");
-Console.WriteLine($"Высота одного этажа: {myHome.HeightCalc()}");
-Console.WriteLine($"{myHome.BuildNumber}");
+Building b1 = Creator.CreateBuild(12, 2, 4, 2);
+b1.Info();
 
-Building home1 = new Building();
-home1.BuildHeig = 50;
-home1.Floors = 5;
-home1.AllApart = 38;
-home1.Entrance = 2;
-home1.Info();
-Console.WriteLine($"Кол-во квартир в подьезде: {home1.ApartInEntra()}");
-Console.WriteLine($"Кол-во квартир на этаже: {home1.ApartInFloor()}");
-Console.WriteLine($"Высота одного этажа: {home1.HeightCalc()}");
-Console.WriteLine($"{home1.BuildNumber}");
+Building b2 = Creator.CreateBuild(122, 2, 5, 2);
+b2.Info();
+
+Creator.Crush(b1);
+
+Console.ReadKey();
+
+
+class Creator: Building
+{
+    static System.Collections.Hashtable buildings = new System.Collections.Hashtable();
+
+    /// <summary>
+    /// Создание объектов класса здания
+    /// </summary>
+    static public Building CreateBuild(int heig, int floors, int apart, int entran) 
+    {
+        Building build = new Building();
+        build.BuildHeig = heig;
+        build.Floors = floors;
+        build.AllApart = apart;
+        build.Entrance = entran;
+        buildings.Add(build.BuildNumber, build);
+        Console.WriteLine("Здание создано");
+        return build;
+    }
+
+    /// <summary>
+    /// Удаление объектов здания
+    /// </summary>
+    static public void Crush(Building b)
+    {
+        if (buildings.ContainsValue(b))
+        {
+            Console.WriteLine("Дом разрушен");
+            buildings.Remove(b);
+        }
+        else
+        {
+            Console.WriteLine("Дома с таким номером в таблице нет");
+        }
+    }
+}
 
 class Building
 {
-    static private int buildNumber = 1;
+    static private int buildNumber = 0;
     private int buildHeig;
     private int floors;
     private int allApart;
     private int entrance;
 
-    public int BuildNumber
+    internal int BuildNumber
     {
         get { return buildNumber++; }
     }
     //6 - минимальная высота дома
-    public int BuildHeig
+    internal int BuildHeig
     {
         set
         {
@@ -51,7 +76,7 @@ class Building
         }
         get { return buildHeig; }
     }
-    public int Floors
+    internal int Floors
     {
         set
         {
@@ -64,7 +89,7 @@ class Building
         }
         get { return floors; }
     }
-    public int AllApart
+    internal int AllApart
     {
         set
         {
@@ -75,7 +100,7 @@ class Building
         }
         get { return allApart; }
     }
-    public int Entrance
+    internal int Entrance
     {
         set
         {
@@ -96,12 +121,15 @@ class Building
         Console.WriteLine($"Количество этажей: {floors}");
         Console.WriteLine($"Количество квартир: {allApart}");
         Console.WriteLine($"Колличество подъездов: {entrance}");
+        Console.WriteLine($"Высота этажа: {HeightCalc()}");
+        Console.WriteLine($"Количество квартир в подъезде: {ApartInEntra()}");
+        Console.WriteLine($"Количество квартир на этаже: {ApartInFloor()}");
     }
     /// <summary>
     /// Вычисление высоты этажа
     /// </summary>
     /// <returns></returns>
-    public int HeightCalc()
+    private protected int HeightCalc()
     {
         return (buildHeig / floors);
     }
@@ -109,7 +137,7 @@ class Building
     /// Вычисление квартир в подъезде
     /// </summary>
     /// <returns></returns>
-    public int ApartInEntra()
+    private protected int ApartInEntra()
     {
         return  allApart / entrance;
     }
@@ -117,7 +145,7 @@ class Building
     /// Вычисление количества квартир на этаже
     /// </summary>
     /// <returns></returns>
-    public int ApartInFloor()
+    private protected int ApartInFloor()
     {
         int apartmens = ApartInEntra();
         apartmens /= floors;
